@@ -1,0 +1,32 @@
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'com.datastax.cassandra:cassandra-driver-core:2.0.3'
+}
+
+
+task pom << {
+	pom {
+		project {
+			groupId 'com.bobgettys.'
+			artifactId 'bigdata-prototyping'
+			version '1.0'
+			inceptionYear '2014'
+			licenses {
+				license {
+					name 'The MIT License (MIT)'
+					url 'http://opensource.org/licenses/MIT'
+				}
+			}
+		}
+	}.writeTo("$projectDir/pom.xml")
+}
+
+build.dependsOn pom
+
